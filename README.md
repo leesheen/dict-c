@@ -1,2 +1,2 @@
 # dict-c
-A Linux Command Line Dictionary
+aA Linux Command Line Dictionary

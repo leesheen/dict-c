@@ -21,6 +21,8 @@
 
 #include "dict.h"
 
+#define JSON_C_0_10_VERSION ((0<<16) | (10<<8) | 0)
+
 int json_analyse(FILE *resout, int useno, char *xpath)
 {
 	int 	ret = 0;
@@ -38,8 +40,15 @@ int json_analyse(FILE *resout, int useno, char *xpath)
 		goto err_file;
 	}
 
+	/* JSON object_get changed when version greater than 0.10  */
+#if (JSON_C_VERSION_NUM < JSON_C_0_10_VERSION)
 	ct_object = json_object_object_get(file_object, xpath);
 	if (NULL == ct_object)
+#else
+	json_bool ct_bool;
+	ct_bool = json_object_object_get_ex(file_object, xpath, &ct_object);
+	if (!ct_bool)
+#endif
 	{
 		printf("JSON Get Error.\n");
 		goto err_content;

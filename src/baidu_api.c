@@ -22,8 +22,8 @@
 #include <openssl/md5.h>
 #include <samba-4.0/libsmbclient.h>
 
-#include "dict.h"
-#include "baidu_api.h"
+#include "../include/dict.h"
+#include "../include/baidu_api.h"
 
 
 static void generate_md5(char *out_buf, 

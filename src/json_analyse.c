@@ -19,7 +19,7 @@
 #include <stdio.h>
 #include <json-c/json.h>
 
-#include "dict.h"
+#include "../include/dict.h"
 
 #define JSON_C_0_10_VERSION ((0<<16) | (10<<8) | 0)
 

@@ -21,8 +21,8 @@
 //#include <unistd.h>
 #include <samba-4.0/libsmbclient.h>
 
-#include "dict.h"
-#include "youdao_api.h"
+#include "../include/dict.h"
+#include "../include/youdao_api.h"
 
 int youdao_translate(FILE *resout, char *arg)
 {

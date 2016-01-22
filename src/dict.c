@@ -28,7 +28,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "dict.h"
+#include "../include/dict.h"
 
 
 int main(int argc, char *argv[])

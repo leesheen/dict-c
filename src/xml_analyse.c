@@ -21,8 +21,8 @@
 #include <libxml/parser.h>
 #include <libxml/xpath.h>
 
-#include "dict.h"
-#include "youdao_api.h"
+#include "../include/dict.h"
+#include "../include/youdao_api.h"
 
 int xml_analyse(FILE *resout, int useno, char *xpath)
 {

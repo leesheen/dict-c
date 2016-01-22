@@ -55,8 +55,8 @@ int main(int argc, char *argv[])
 		strcat(trans_chars, " ");
 	}
 	
-	baidu_translate(resout, trans_chars);
-	//youdao_translate(resout, trans_chars);
+	//baidu_translate(resout, trans_chars);
+	youdao_translate(resout, trans_chars);
 
 	printf("\n********************************\n"); 
 

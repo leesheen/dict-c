@@ -20,6 +20,9 @@
 #define __DICT_H__
 
 //#define _DEBUG_
+
+#include "errno.h"
+
 #include <stdio.h>
 
 /* URL地址char数组的存储大小 */
@@ -41,6 +44,34 @@
 	sprintf(filename, "%s%d", URL_FILE_NAME, useno)
 /* end */
 
+#define DICT_OPTSTRING	"HhVvi:o:a:"
+
+typedef enum DICT_BOOL {
+	TRUE = 0,
+	FALSE,
+} DICT_BOOL;
+
+
+#define DICT_API_NAME_NUM	3
+typedef enum DICT_API {
+	API_YOUDAO = 0,
+	API_BAIDU,
+	API_GOOGLE,
+} DICT_API;
+
+typedef struct dict_str {
+	DICT_BOOL 		is_vaild;
+	DICT_API 		dict_api;
+	FILE 			*res_in;
+	FILE 			*res_out;
+
+	int 			content_len;
+	int 			content_location;
+	unsigned char 	*content;
+} DICT_STR;
+
+
+static unsigned char g_dict_api_name_array[DICT_API_NAME_NUM][7] = {"youdao", "baidu", "google"};
 
 extern int url_handle(char *url_addr, int useno); 
 extern int xml_analyse(FILE *resout, int useno, char *xpath);

@@ -15,15 +15,18 @@
  *
  * =====================================================================================
  */
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-#include <time.h>
+
+#include "baidu_api.h"
+
+#include "dict.h"
+
 #include <openssl/md5.h>
 #include <samba-4.0/libsmbclient.h>
 
-#include "../include/dict.h"
-#include "../include/baidu_api.h"
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <time.h>
 
 
 static void generate_md5(char *out_buf, 
@@ -56,6 +59,7 @@ static void generate_md5(char *out_buf,
 	
 	return ;
 }
+
 
 int baidu_translate(FILE *resout, char *arg)
 {

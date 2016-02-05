@@ -15,14 +15,17 @@
  *
  * =====================================================================================
  */
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
+
+#include "dict.h"
+
+#include "youdao_api.h"
+
 #include <libxml/parser.h>
 #include <libxml/xpath.h>
 
-#include "../include/dict.h"
-#include "../include/youdao_api.h"
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
 
 int xml_analyse(FILE *resout, int useno, char *xpath)
 {

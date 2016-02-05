@@ -15,11 +15,14 @@
  *
  * =====================================================================================
  */
-#include <stdlib.h>
-#include <stdio.h>
+
+#include "dict.h"
+
 #include <json-c/json.h>
 
-#include "../include/dict.h"
+#include <stdlib.h>
+#include <stdio.h>
+
 
 #define JSON_C_0_10_VERSION ((0<<16) | (10<<8) | 0)
 

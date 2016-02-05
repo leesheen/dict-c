@@ -24,12 +24,12 @@
  *
  * =====================================================================================
  */
+
+#include "dict.h"
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-
-#include "../include/dict.h"
-
 
 int main(int argc, char *argv[])
 {
@@ -56,7 +56,7 @@ int main(int argc, char *argv[])
 	}
 	
 	//baidu_translate(resout, trans_chars);
-	youdao_translate(resout, trans_chars);
+//	youdao_translate(resout, trans_chars);
 
 	printf("\n********************************\n"); 
 

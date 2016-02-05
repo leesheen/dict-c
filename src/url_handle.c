@@ -15,13 +15,15 @@
  *
  * =====================================================================================
  */
-#include <stdlib.h>
+
+#include "dict.h"
+
+#include <curl/curl.h>
+
 #include <stdio.h>
 #include <string.h>
 #include <errno.h>
-#include <curl/curl.h>
 
-#include "../include/dict.h"
 
 int url_handle(char *url_addr, int useno)
 {

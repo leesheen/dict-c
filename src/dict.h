@@ -20,6 +20,7 @@
 #define __DICT_H__
 
 //#define _DEBUG_
+#include <stdio.h>
 
 /* URL地址char数组的存储大小 */
 #define TRANS_CHARS_BUF	300

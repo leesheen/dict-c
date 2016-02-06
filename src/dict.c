@@ -151,7 +151,7 @@ static DICT_BOOL dict_arg_init(DICT_STR *dict_str_tmp,
 	return dict_str_tmp->is_vaild;
 }
 
-static void dict_str_add_content(DICT_STR * dict_str_tmp, 
+static DICT_BOOL dict_str_add_content(DICT_STR * dict_str_tmp, 
 		int argc, char *argv[])
 {
 	int i;
@@ -159,6 +159,8 @@ static void dict_str_add_content(DICT_STR * dict_str_tmp,
 	int location	= dict_str_tmp->content_location;
 
 	unsigned char *content = (unsigned char *)malloc(len);
+	if (NULL == content) 
+		return FALSE;
 
 	memset(content, 0, len);
 
@@ -172,7 +174,7 @@ static void dict_str_add_content(DICT_STR * dict_str_tmp,
 
 	dict_str_tmp->content = content; 
 
-	return ;
+	return TRUE;
 }
 
 
@@ -184,17 +186,30 @@ static int dict_init(DICT_STR **dict_str_pp, int argc, char *argv[])
 	DICT_STR  dict_str_tmp;
 
 	dict_arg_init(&dict_str_tmp, argc, argv);
-	if (dict_str_tmp.is_vaild == TRUE)
+	if (dict_str_tmp.is_vaild == FALSE)
 	{
-		dict_str_add_content(&dict_str_tmp, argc, argv);
-
-		*dict_str_pp = (DICT_STR *)malloc(sizeof (DICT_STR));
-		memcpy(*dict_str_pp, &dict_str_tmp, sizeof (DICT_STR));
-
-		ret = ERRNO_SUCCESS;
+		printf("[DICT]%s: DICT_STR is vaild.", __func__);
+		return ret;
 	}
 
-	return ret;
+	if (dict_str_add_content(&dict_str_tmp, argc, argv) == FALSE)
+	{
+		free(dict_str_tmp.content);
+
+		printf("[DICT]%s: DICT_STR add content error.", __func__);
+		return ret;
+	}
+
+	if ((*dict_str_pp = (DICT_STR *)malloc(sizeof (DICT_STR))) == NULL)
+	{
+		free(dict_str_tmp.content);
+
+		printf("[DICT]%s: DICT_STR malloc failed.", __func__);
+		return ret;
+	}
+	memcpy(*dict_str_pp, &dict_str_tmp, sizeof (DICT_STR));
+
+	return (ret = ERRNO_SUCCESS);
 }
 
 static int dict_exec(DICT_STR *dict_str_p)
@@ -207,11 +222,11 @@ static int dict_exec(DICT_STR *dict_str_p)
 	return ret;
 }
 
-static int dict_free(DICT_STR *dict_str_p)
+static void dict_free(DICT_STR *dict_str_p)
 {
 	free(dict_str_p->content);
 	free(dict_str_p);
-	return 0;
+	return ;
 }
 
 int main(int argc, char *argv[])
@@ -229,24 +244,15 @@ int main(int argc, char *argv[])
 		if (NULL != my_dict_str)
 			printf("[DICT]%s: Initialization Failed.", __func__);
 
-		goto err;
+		return ret;
 	}
 	
 	ret = dict_exec(my_dict_str);
 	if (ERRNO_EXEC == ret)
-	{
 		printf("[DICT]%s: Execution Failed.", __func__);
-		goto err;
-	}
 
-	ret = dict_free(my_dict_str);
-	if (ERRNO_EXIT == ret)
-	{
-		printf("[DICT]%s: Exit Failed.", __func__);
-		goto err;
-	}
+	dict_free(my_dict_str);
 
-err:
 	return ret;
 }
 

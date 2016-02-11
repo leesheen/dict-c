@@ -56,12 +56,14 @@ static DICT_BOOL dict_choose_api(DICT_STR *dict_str_tmp, char *optarg)
 	dict_str_tmp->is_vaild = FALSE;
 
 	for (i=0; i<DICT_API_NAME_NUM; i++)
+	{
 		if (NULL !=	strcasestr(g_dict_api_name_array[i], optarg))
 		{
 			dict_str_tmp->dict_api = i;
 			dict_str_tmp->is_vaild = TRUE;
 			is_print_help = FALSE;
 		}
+	}
 
 	return is_print_help;
 }

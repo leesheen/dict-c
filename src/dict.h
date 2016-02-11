@@ -75,7 +75,6 @@ static unsigned char g_dict_api_name_array[DICT_API_NAME_NUM][7] = {"youdao", "b
 
 extern int url_handle(char *url_addr, int useno); 
 extern int xml_analyse(FILE *resout, int useno, char *xpath);
-extern int json_analyse(FILE *resout, int useno, char *xpath);
 
 extern int youdao_translate(FILE *resout, char *arg);
 extern int baidu_translate(FILE *resout, char *arg);

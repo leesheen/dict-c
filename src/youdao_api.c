@@ -96,9 +96,9 @@ int youdao_translate(FILE *resout, char *arg)
 	}
 	else 	/* JSON方式解析 */
 	{
-		ret = json_analyse(resout, NO_YOUDAO, YD_JSON_NAME(YD_NAME_ERROR));
+	//	ret = json_analyse(resout, NO_YOUDAO, YD_JSON_NAME(YD_NAME_ERROR));
 		//ret = json_analyse(resout, NO_YOUDAO, YD_JSON_NAME(YD_NAME_TRANSLATION));
-		ret = json_analyse(resout, NO_YOUDAO, YD_JSON_NAME(YD_NAME_BASIC));
+	//	ret = json_analyse(resout, NO_YOUDAO, YD_JSON_NAME(YD_NAME_BASIC));
 	}
 
 
